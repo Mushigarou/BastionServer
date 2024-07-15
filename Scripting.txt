@@ -1,0 +1,235 @@
+Script : a bunch of commands listed in a .sh file
+    # .sh is not necessary, whatever you want to call it
+    # Sheiben : tells which interpreter the script is suppose to use
+
+#to show which shell you're using :
+    # echo $SHELL
+
+# to switch to bash shell :
+    #which bash
+    # run above output
+
+********************** VARIABLES ***************************
+
+# You can run commands directly in the STDIN (terminal) (Variables survives only during the session)
+    # that's why putting them in script is better
+
+# to declare a variable
+    # name="value"
+    # myname="Marouane"
+
+# to call the variable
+    # use '$' before the 'name'
+    # $myname
+
+*********** DOUBLE ? SINGLE QUOTES
+# echo 
+    echo "hey my name is $name" (refer to the value hold by name var)
+    echo 'hey my name is $name' (prints $name)
+
+*********** CAPTURING OUTPUT OF A COMMAND
+
+# subshell : allows to run a command in the background
+    
+    # files=$(ls)
+
+*********** DEFAULT VARIABLES / IMPLICIT (enviromennent)
+
+
+# To see env variables
+    # env (command)
+
+# system variable (Usually are Uppercase)
+    # echo $SHELL (env var)
+    # echo $USER   (env var)
+
+*********** EXAMPLE
+
+    #!/bin/bash
+    arch=$(uname -a)
+    echo "HELLOOOOOOOOOOOOOO"
+    echo arch : $arch 
+
+*********** EXPR COMMAND (let bash know that you want to evaluate an expression)
+
+    # expr 10 + 5
+    # expr 10 - 5
+    # expr 10 / 5
+    # expr 10 \* 5 (escape astreik, because it is a wildcard)
+
+# you store in a variables, then evaluate variables
+    # expr $mynum1 + $mynum2
+
+*********** IF STATEMENTS
+
+# Syntax
+                                    mynum=200
+    if testcase                     if [$mynume -eq 200]
+    then                            then
+        command                         echo "condition is true"
+    else                            fi
+        command                      
+    fi // close if                  
+
+-eq : equal
+-ne : not equal
+!   : negate a statement
+-gt : greater than
+if [ -f ~/script.sh ] : to check if a file exists (-d for directory)
+
+[] : brackets use the test command (man test (manuel))
+command -v : command is command that checks for a command if exists
+
+                            ifconfig=ifconfig
+
+                            if command -v $ifconfig
+                            then
+                                echo "Command found"
+                            else
+                                echo "command not found"
+                                apt update && apt install -y net-tools
+                            fi
+
+                            $ifconfig
+
+*********** EXIT CODES
+
+>> : append output of a command to a file
+THE EXECUTION ORDER IS SO IMPORTANT, WHEN YOU WANT TO CHECK IF 
+AN COMMAND FAILED
+it is what tells the bash if command ran successfully or failure. it gives you more control on your code
+    #echo $? ('?' check question mark variable)
+
+                    deb=htop
+
+                    apt install $deb >> installing.log
+
+                    if [ $? -eq 0 ]
+                    then
+                        echo "command was successfully"
+                    else
+                        echo "something went wrong"
+                    fi
+
+you can force exit code :
+    # echo "Hello"
+    # exit 0 (anything after this line won't be run)
+    # echo $?
+
+# you can use linux command as a criteria for if statements.
+# you can use '||' '&&' '!'in criteria of an if statement
+
+*********** WHILE LOOP
+
+# Syntax
+    while testcase
+    do
+        command(s)
+    done
+
+*********** FOR LOOP
+
+# Syntax
+    for var_name in ....
+    do
+        command
+    done
+
+for num in {1..10}   // {1..10} = 1 2 3 4 5 6 7 8 9 10
+do
+    echo $num && sleep 1
+done
+
+*********** Where to store scripts
+
+# FHS (File  system hierarchy)
+
+# /usr/local/bin (Locally installed programs that adminstrators use. FHC)
+# you can drop the extension .sh
+
+# run the script from any directory
+    # nameofscript
+
+# shell looks in specific folders
+    # echo $PATH
+
+# To add a PATH 
+    # export PATH=/usr/local/bin:$PATH
+
+*********** DATA STREAMS (I/O, STDERR)
+
+# Splitting I from STDERR
+
+    # find /etc -type f 2> /dev/null (redirecting stderr to /dev/null) (1 is implied)
+    # find /etc -type f 1> /dev/null (redirecting STDOUT)
+    # find /etc -type f &> file.txt (redirecting both)
+    # find /etc -type f 1> file.txt 2>/var/log/log.txt (redirecting each thing to a different file)
+
+# Reading STDIN
+    # echo "write your name" 
+    # read name
+    # echo "your name is " $name
+
+*********** FUNCTIONS
+
+# Functions are usefull to not repeat yourself
+
+# Declaring a function
+    # function_name() {
+
+    }
+# Calling function
+    # function name
+
+*********** CASE STATEMENTS
+
+# Syntax
+    # case $num in
+            1) echo "you are smart";;
+            2) echo "you are dumb";; (has to end with ;;)
+            .
+            .
+            *) echo "option to show if none of above options has been matched" (doesn't end with ;;)
+        esac
+
+*********** SCHEDULING JOBS WITH 'AT' COMMAND
+
+at : enable you to execute a script later
+
+# How to Schedule a job 
+    #  at [time] -f [file_to_run]
+
+# How to see job
+    # atq
+
+# how to remove a job?
+    # atrm [num_of_thejob]
+
+*********** SCHEDULING JOBS WITH 'CRON' COMMAND
+
+# to schedule a job
+    # crontab -e
+    # m h  dom mon dow   command
+    # m : minutes
+    # h : hour (in milimeter)
+    # dom : day of the month (1-31)
+    # mon : month of the year (1 - 12)
+    # dow : day of the week
+    # command : command to run
+
+    # */10 * * * * ~/script.sh (this job will run every 10min)
+
+# editing cron tab of another USER
+    # sudo crontab -u [user] -e
+
+*********** Arguments of CLI in scripts
+
+# Arguments : what you write after running script
+    # $1 : means, first argument
+    # $2 : means, second argument. and so on...
+    # $# : means, all arguments
+
+
+
+
+

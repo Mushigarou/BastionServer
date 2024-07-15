@@ -1,0 +1,80 @@
+**************************************************************
+
+https://medium.com/information-and-technology/so-what-is-apparmor-64d7ae211ed
+
+**************************************************************
+
+AppArmor works using file paths and its configuration can be easily adapted. 
+SELinux is considered to be very complicated and requires a supported
+
+**************************************************************
+
+# AppArmor will monitor the processes that match these profiles and 
+    decide if a specific action is permitted or denied by the policy.
+# Access is denied by default if no profile says otherwise
+AppArmor can be configured to notify users with real-time violation warnings popping up on the desktop.
+
+# All AppArmor profiles will be stored in the /etc/apparmor.d directory.
+
+**************************************************************
+
+# apparmor_parser - loads AppArmor profiles into the kernel
+    # Refresh Apparmor
+        # apparmor_parser -r /etc/apparmor.d/home.user.bin.example.sh
+
+# apparmor.d - syntax of security profiles for AppArmor.
+
+************************ MODES / STATES ***************************
+
+    Enfore mode : if a program tries to do something, he is not allow to do (it is denied)
+    Complain mode : if a program tries to do something, apparmor allows it, but log it and complain about it
+    Unconfined mode : this program can do whatever he wants (No complain, no denying) (can be useful if you don't know what permissions to give to a process)
+
+************************ CHECKS **************************
+
+    - systemctl status apparmor  # Checks status of the AppArmor service and tells you if it is enabled on boot
+    - systemctl start apparmor # Starts the service
+    - systemctl enable apparmor  # Makes apparmor start on boot
+
+******************** Profile Syntax /etc/apparmor.d/... ****************************
+
+# Apparmor profile syntax :
+    /home/user/bin/example.sh {
+        ...
+    }
+
+# Used to pull in generic rules (pre-configured libraries) :
+    - #include <abstractions/base> 
+    - #include <abstractions/bash>
+********************* MAIN COMMANDS ************************
+
+# To see if apparmor is enabled :
+    #  aa-enabled
+
+# To see what apparmor is doing :
+    - sudo aa-status
+
+# aa-genprof :
+    # used to monitor and create a profile for an application the first time it is run
+        so that AppArmor can learn what the applications tendencies are and prompt you for what behavior needs to be taken in certain circumstances
+    # aa-genprof [program] (Follow Prompts)
+
+       - Inherit: Creates a rule that is denoted by “ix” within the profile, causes the executed binary to inherit permissions from the parent profile.
+       - Child: Creates a rule that is denoted by “Cx” within the profile, requires a sub-profile to be created within the parent profile and rules must be separately generated for this child (prompts will appear when running scans on the parent).
+       - Deny: Creates a rule that AppArmor prepends with “deny” at the start of the line within the profile, causes the parents access to the resource be denied.
+       - Abort: Exits the AppArmor program without saving any changes.
+       - Finish: Exits the AppArmor program but WILL save changes.
+
+# aa - logprof : (Programs are dynamic not static, that's why we need aa-logprof and aa-mergeprof to update our profiles)
+    # once you have an existing profile and need to allow/deny access to certain tasks which have already been logged during enforce or complain modes.
+
+# (1 being low warning and 10 being very serious)
+# generating a profile for script
+    - sudo apt install apparmor-utils (you must have this package to generate a profile)
+    - sudo aa-genprof [programname]
+
+*************** Delete a Profile ****************************
+
+# Navigate to /etc/apparmor.d/...
+    # sudo rm [profile]
+

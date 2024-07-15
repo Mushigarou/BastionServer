@@ -1,0 +1,7 @@
+ - sudo ufw
+ - sudo ufw deny [port]
+ - sudo ufw allow [port]
+ - sudo ufw delete [RULE|NUM]
+ - sudo ufw status numbered
+ - sudo ufw default deny incoming
+ - sudo ufw default allow outgoing

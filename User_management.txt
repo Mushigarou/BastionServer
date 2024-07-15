@@ -1,0 +1,49 @@
+(useradd is a lazy command)(In linux we create a user and a group)
+    # adduser [username] // useradd [username] 
+
+    # cat /etc/passwd (to list users)
+    - (if 'x' is mentionned in front of username it means that password is stored at '/etc/shadow' passwords
+    - [username]:x:[UID]:[GID]:[home directory]:[bash]
+        mfouadi:x:1001:1001:mfouadi42,,,:/home/mfouadi42:/bin/bash (output )
+        test:x:1001:1001::/home/test:/bin/sh (output of useradd (doesn't add a home directory 'ls -al /home'), if you want a home directory add -m option)
+
+Changing Hostname :
+    - sudo hostname [new_hostname]
+    - hostnamectl set-hostname [new_hostname]
+To add or change password for a user :
+    # passwd [username]
+
+to modify something use :
+    # usermod [username]
+    # usermod [username] --shell /bin/bash (to change sh to bash)
+    # usermod -l [new username] [old username]
+
+to swith users :
+    # su - (root user) // sudo su - (log as a root without a user)
+    # su [username]
+    # sudo -i (don't ask for password of root)
+
+To add a user to the sudoers file :
+    # [username] ALL = ALL (all commands, or specify by /bin/ls...)
+
+To add a group to the sudoers file :
+    # %[groupname] ALL = NOPASSWD:ALL ('%' means a group)
+
+To add a user to a group :
+    # usermod -aG [groupname] [username] ('G' option alone, will add the user to that group and eliminate him from any other group. 'a' stands for append)
+
+Remove a user from a group :
+    # gpasswd -d [username] [group name] (-d for delete)
+
+Delete a user :
+    # userdel [username]
+
+Create a group :
+    # groupadd [name of the group]
+
+    # cat /etc/group (list groups)
+    # groups (to see in which grp you are)
+
+Delete a group :
+    # groupdel [groupname]
+

@@ -1,0 +1,8 @@
+this ip is 32bit long 192.168.1.15/24
+    192.168.1   : is the network part   : Uniquely identifies the network
+    .15         : is the host part      : Uniquely identifies the host in a network
+    /24         : available host range in the network 
+subnet mask: tells the computer where is the network part and host part. subnet is 32bit long
+    255.255.255.0 ==> 11111111.11111111.11111111.00000000
+    0's : represents host part, 
+    1's : represents network part

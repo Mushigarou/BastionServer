@@ -1,0 +1,40 @@
+Checking ssh :
+    # which ssh (check if ssh command is installed)
+    # ss -tulpn | grep sshd (to check which port ssh is listenning to)
+    # systemctl status ssh (check ssh services)
+
+To connect to a VM from host:
+    # change VM setting to 'Briged adapter' instead of 'NAT' in network section
+    # allow port 22 (default of ssh) or any other port in UFW (firewall)
+
+Packages needed :    
+    # install openssh-server package
+    # install openssh-client package
+    # sudo apt install net-tools (for ifconfig command) or use, 'ip a' command
+
+IP adress :
+    # NAT (Network Adress Translation)
+    # ip route (command)
+
+
+Checking 
+**********************************************************
+
+check if you have ssh :
+    # which ssh
+packages :
+    # apt search openssh-client (Installed Automatically)    # apt search openssh-server (Installed Automatically)
+
+since client package is installed
+    # ssh [user]@[hostname] (optional) -p [port]
+    # tail -f /var/log/auth.log (to see error why ssh doesn't work)
+
+Change /etc/ssh/sshd_config file :
+    # change port number
+    # set 'permitrootLogin no'
+
+Create a local network in Virtualbox :
+    # tools
+
+Add a new rule to network settings of your machine :
+    # NAT

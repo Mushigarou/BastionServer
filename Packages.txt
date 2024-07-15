@@ -1,0 +1,12 @@
+man command :
+    # sudo apt install man-db
+
+ifconfig command :
+    # sudo apt install net-tools
+
+sudo command :
+    # apt get install sudo
+
+ssh :
+    # install openssh-server package
+    # install openssh-server package

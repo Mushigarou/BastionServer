@@ -1,0 +1,55 @@
+https://www.sudo.ws/docs/man/1.9.2/sudoers.man/#defaults
+
+************** SUDOERS FILE ***************************
+
+# man sudoers
+
+# The sudoers file is composed of two types of entries: aliases (basically
+     variables) and user specifications (which specify who may run what).
+# Syntaxe :
+    # username hostlist = (userlist) commandlist
+        
+        - The 'username' field indicates which user in the system this rule will apply to.
+        - The 'hostlist' tells sudo to apply this rule on a list of system hosts that are known to sudo. By default, sudo only recognizes the local machine as its host.
+        - The 'userlist' tells sudo which user account the username field can substitute to.
+        - The 'commandlist' is a comma separated list that indicates which programs in the system 
+            the username can run as that user.
+
+# The first part is the user, the second is the terminal from where the user can use sudo command, 
+    the third part is which users he may act as, 
+    and the last one, is which commands he may run when using sudo.
+
+# If you want not to be asked for a password use this form:
+    # go2linux ALL=(ALL) NOPASSWD: ALL
+
+# how to set nano or vim to use with visudo command as default editor.
+    # export VISUAL=vim; visudo
+    # export VISUAL=nano; visudo
+
+**************** DEFAULTS LOGFILE ***************************
+#logfile
+    - Path to the sudo log file (not the syslog log file). 
+    - Setting a path turns on logging to a file; 
+    - negating this option turns it off. By default, sudo logs via syslog.
+
+*******************************************************
+
+# Showing what user can do with sudo   
+    # sudo -l
+
+# Forgot to run command with sudo??
+    # sudo !! (!! : most recent command)
+
+************************************************************
+
+*Installing sudo
+*** su -
+*** Enter password
+*** apt get update
+*** apt get install sudo
+
+* Add user to /etc/sudoers file
+*** su -
+*** Enter Password
+*** visudo
+*** username ALL=(ALL) ALL //(ALL means all priviligies)(%sudo, the '%' indicates that sudo is a group system)

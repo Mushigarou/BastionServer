@@ -1,0 +1,31 @@
+Command 	        Description
+uname -a 	        Shows the current kernel and OS information
+sudo <command>  	Executes the command as root (Administrator)
+
+if  (/etc/pacman.d)
+    host based on Arch
+    sudo pacman -Sys
+else if (/etc/apt)
+    host based on debian or Ubuntu
+    sudo apt update
+
+cat /etc/os-release
+
+grep -q "" (look for a word but don't print anything) (-q quiet mode)
+
+sudo chown root:root (change ownership of a file)
+
+# find /etc -type f 1> file.txt 2>/var/log/log.log (redirecting each thing to a different file)
+
+> : overwrite
+>> : append
+
+# nested commands
+    # echo "hello `echo "mate"`" (you have to include `` around the nested command)
+
+# to remove ports from ss -tulpn
+    # 1 : looking for the process listenning to that particular ports
+        # use  fuser command [fuser [port_number]/[type_ofprotocol]], ex. `sudo fuser 68/tcp`
+
+    # 2 : Kill all processes using that port
+        # sudo kill [PID]

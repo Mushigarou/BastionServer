@@ -1,0 +1,45 @@
+# man pam (Pluggable Authentication Modules for Linux) (basic function for password checks)
+
+# sudo apt install libpam-pwquality
+
+    # 1: cd /etc/login.config (this where you configure you passwd policy)
+
+    # 2: DON'T FORGET `CHAGE` COMMAND :
+        # man chage 
+        # change -l [user] // to see info
+        # chage -M 30 -m 2 -W 7 [user]
+
+# to see daemons and services
+    # /etc/pam.d (file is used to specify system-wide defaults 
+        for various settings related to user accounts and authentication.)
+
+
+# On Debian 11, the pam_pwquality module is usually configured through the /etc/pam.d/common-password
+    # To set password policies with pam_pwquality, you can add the appropriate configuration options 
+    to the 
+        /etc/security/pwquality.conf (man pwquality.conf(5)) 
+        The configuration options available in pam_pwquality include:
+
+    minlen: Specifies the minimum password length.
+    dcredit: Specifies the number of required digits in the password. 
+        A positive value means that the password must contain at least the specified number of digits, 
+        while a negative value means that the password must contain at least the absolute value of dcredit digits.
+    ucredit: Specifies the number of required uppercase letters in the
+        password. A positive value means that the password must contain at least 
+        the specified number of uppercase letters, while a negative value means that 
+        the password must contain at least the absolute value of ucredit uppercase letters.
+    lcredit: Specifies the number of required lowercase letters in the password. 
+        A positive value means that the password must contain at least the specified number of 
+        lowercase letters, while a negative value means that the password must contain at least the absolute 
+        value of lcredit lowercase letters.
+    ocredit: Specifies the number of required other (non-alphanumeric) characters in the password. 
+        A positive value means that the password must contain at least the specified number of other characters, 
+        while a negative value means that the password must contain at least the absolute value of ocredit other characters.
+    maxrepeat: Specifies the maximum number of consecutive identical characters allowed in the password.
+    maxclassrepeat: Specifies the maximum number of characters from the same character class 
+        (e.g., digits, uppercase letters, lowercase letters) that are allowed to appear consecutively in the password.
+    maxsequence: Specifies the maximum length of monotonic character sequences 
+        (e.g., abc, def, hij) that are allowed in the password.
+
+#####   dcredit=-1 and dcredit= are exaclty the same, they do the same job cause absolute value of -1 is 1, 
+        while dcredit = 0 means that password can contain at 0 or more digits

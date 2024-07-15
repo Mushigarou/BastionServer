@@ -1,0 +1,10 @@
+On most Linux systems, tty devices are used for 
+console login and terminal sessions. For example, you can use a 
+tty to log in to the system using a text-based login prompt, or to start a 
+terminal session where you can enter commands and interact with the system.
+
+# If tty is enabled, this command will list the tty devices on your system
+    - ls /dev/tty*
+
+# To disable tty terminal
+    # /etc/systemd/logind.conf

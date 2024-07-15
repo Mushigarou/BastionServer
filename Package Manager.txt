@@ -1,0 +1,41 @@
+pip : (package manager of python)
+    # pip3 install -r []
+
+rubygems : (package manager of Ruby language)
+    # sudo gem install [application]
+
+snap : (package manager) (developers can upload their app instantlly to the snap store and make it available for any one with a Linux)
+    # sudo apt install snapd
+    # sudo snap install [application]
+
+dpkg :
+    # dpkg -i [file.deb] (.deb, .exe, .rpm, .dmg...) (low level package manager)(dpkg doesn't install dependencies, so you'll see errors)
+    # dpkg -l (list all installed packages)
+
+
+apt : Advandced Packaging Tool : more smart than dpkg, doesn't require the .deb package itself, just the 
+        the name of the software that you want to install. it refers to a repository (store location), 
+        when writing the command 'apt update', apt asks the repo for everything he has.
+always update before installing
+
+to check repo used by apt :
+    # sudo apt edit-sources
+
+list packages :
+    # sudo apt list
+
+    # sudo apt -h
+
+    #sudo apt list --installed | grep ...
+
+    #sudo apt show [packagename]
+
+    # sudo apt search (serach among packages)
+
+    #sudo apt upgrade (upgrade applications) 
+     
+    #sudo apt full-upgrade (remove packages that are no more needed)
+
+Remove a package :
+    # sudo apt remove [application] (apt remove, remove the application but not the user data)
+    # sudo apt purge [application] )(remove app, and user data)

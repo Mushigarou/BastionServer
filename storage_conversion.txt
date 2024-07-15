@@ -1,0 +1,55 @@
+sda                     8:0    0 38.8G  0 disk
+├─sda1                  8:1    0  476M  0 part /boot
+├─sda2                  8:2    0    1K  0 part
+└─sda5                  8:5    0 38.3G  0 part
+	├─LVMGroup-root     254:0    0  9.3G  0 lvm  /
+	├─LVMGroup-swap     254:1    0  2.1G  0 lvm  [SWAP]
+	├─LVMGroup-home     254:2    0  4.7G  0 lvm  /home
+	├─LVMGroup-var      254:3    0  2.8G  0 lvm  /var
+	├─LVMGroup-srv      254:4    0  2.8G  0 lvm  /srv
+	├─LVMGroup-tmp      254:5    0  2.8G  0 lvm  /tmp
+	└─LVMGroup-var--log 254:6    0  3.7G  0 lvm  /var/log
+
+
+(base 10) 1G = 1000Mb | 1M = 1000ko | 1000ko * 1000ko = 1.000.000 byte
+(base 2) 1ko = 1024b | 1Mb = 1024ko | 1G = 1024Mb
+
+**********************
+
+IN BYTES :
+
+1G = 1 073 741 824B = 2^30
+
+1M = 1048576B = 2^20
+
+1KO = 1024B = 2^10
+
+1B = 2^10
+
+**********************
+
+1 Unit of storage = 512 byte (the smallest portion (block))
+
+**********************
+
+30.8Gb in base 2?
+	1073741824B * 30.8 = 33 071 248 179.2B ///// 33 079 636 992
+
+500M in base 2 ?
+	1048576B * 500 = 524 288 000 B 524.288M 525
+
+3G in base 2 ?
+	1 073 741 824B * 3 = 3 221 225 472
+
+2.3Gb in base 2 ?
+	2 469 606 195.2 B
+5Gb in base2 ?
+	5 368 709 120 B 
+
+4Gb ?
+	4 294 967 296 B
+
+10Gb ?
+	10 737 418 240 B
+
+5 381 292 032

@@ -1,0 +1,61 @@
+Processes : is an instance of a running program (ex. lanching vscode)
+    # ps -aux (list all Processes)
+
+daemons (services) : are processes running, but we didn't launch
+    # To know if a process is a daemon, look at the last letter
+    # ex. 'ssh' ==> 'sshd',  'ntp' ==> 'ntpd'
+
+THE MASTER OF DAEMONS IS : 'systemd' daemon
+    # Service manager (systemctl command line)
+    # systemd calls daemons 'units'
+
+    # initialization system "init" (Boot==>kernel==>'systemd daemon is the first process to be launched')
+    # ps -aux ==> (init is the first process, PID = 1)
+    # sudo apt-get install psmisc
+    # pstree (shows launched processes listed in a tree)
+
+    # other init systems : appstart, openrc...
+
+*******************************************
+
+To check daemon status :
+    # sudo systemctl status [daemon]
+    # sudo systemctl is-active [daemon]
+    # sudo systemctl is-enabled [daemon]
+
+*******************************************
+
+Stop a daemon :
+    # sudo systemctl stop [daemon]
+
+start a daemon :
+    # sudo systemctl start [daemon]
+
+restart a daemon :
+    # sudo systemctl restart [daemon]
+
+Reload a daemon : (Not all daemons can be reloaded, depends on their configurations)
+    # sudo systemctl reload [daemon]
+    # sudo systemctl reload-or-start [daemon] (it will reload it, if it can't it will restart it)
+
+*******************************************
+
+Start a service at boot :
+    # sudo systemctl enable [service] (it will be enabled next time)
+
+Stop a service at boot : 
+    # sudo systemctl disable [daemon]
+
+*******************************************
+
+to see daemons on a system : (parsed, loaded to memory)
+    # sudo systemctl list-units -t services (only active daemons) (-t stands for type)
+    # sudo systemctl list-units --all (active and inactive daemons)
+
+to list daemons (not parsed, not loaded (ex. nginx)) :
+    #  sudo systemctl list-units-files | grep nginx
+
+*******************************************
+
+Systemd logfile :
+    # sudo journalctl -xe

@@ -1,0 +1,28 @@
+Type of processes :
+    # Foreground
+        # ping -c 100 [server to ping] (are you there?) (-c stands for count) (100 : it will repeat the ping 100 times)
+        # sleep 10
+    # Background
+        # ping -c 1000
+jobs :
+    # jobs (to see jobs)
+    # bg
+
+to see processes :
+    # ps -u [user]
+
+Kill a processes :
+    # pgrep [processes] (returns PID)
+    # kill [PID] (kill process)
+
+to display the processes that are using a specific file, socket, or network port :
+    # fuser [port]/[protocol(tcp, udp...)]
+
+ps -aux :
+    # a : all users
+    # x : processes not executed of that terminal running
+    # u : list user
+
+See running processes (like task manager) :
+    # top
+    # apt install htop && htop (better looking)
